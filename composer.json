@@ -1,0 +1,28 @@
+{
+    "name": "mlaetitia/letmegetmybag",
+    "description": "Source repo for letmegetmybag.com - custom WordPress themes, plugins, and mu-plugins.",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.10",
+        "wp-coding-standards/wpcs": "^3.1",
+        "phpcsstandards/phpcsutils": "^1.0",
+        "phpcsstandards/phpcsextra": "^1.2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "format": "phpcbf",
+        "lint:report": "phpcs --report=summary"
+    }
+}

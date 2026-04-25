@@ -1,48 +1,74 @@
-# Wordpress - ignore core, configuration, examples, uploads and logs.
-# https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# =============================================================================
+# letmegetmybag - allowlist .gitignore
+# =============================================================================
+# Strategy: ignore everything by default, then explicitly allow our own code.
+# When you create a new theme, plugin, or mu-plugin, add a corresponding
+# allowlist entry below.
+# =============================================================================
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
-/wp-admin/
-/wp-content/index.php
-/wp-content/languages
-/wp-content/plugins/index.php
-/wp-content/themes/index.php
-/wp-includes/
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+# --- Repo root: ignore everything by default --------------------------------
+/*
 
-# Configuration
-wp-config.php
+# --- Re-include repo-level scaffolding --------------------------------------
+!/.editorconfig
+!/.gitattributes
+!/.github
+!/.gitignore
+!/LICENSE
+!/README.md
+!/composer.json
+!/composer.lock
+!/package.json
+!/package-lock.json
+!/phpcs.xml.dist
+!/wp-content
 
-# Example themes
-/wp-content/themes/twenty*/
+# --- wp-content: ignore everything by default -------------------------------
+/wp-content/*
 
-# Example plugin
-/wp-content/plugins/hello.php
+# --- Re-include directories that may host our custom code -------------------
+!/wp-content/themes
+!/wp-content/plugins
+!/wp-content/mu-plugins
 
-# Uploads
-/wp-content/uploads/
+# --- Inside themes/plugins/mu-plugins: ignore everything --------------------
+# (this excludes WordPress defaults, third-party themes/plugins, etc.)
+/wp-content/themes/*
+/wp-content/plugins/*
+/wp-content/mu-plugins/*
 
-# Log files
-*.log
+# =============================================================================
+# Allowlist: our custom code
+# Add a new line here whenever you create a new theme, plugin, or mu-plugin.
+# =============================================================================
+!/wp-content/themes/commonplace
+# !/wp-content/plugins/<your-plugin-slug>
+# !/wp-content/mu-plugins/<your-mu-plugin-slug>
 
-# htaccess
-/.htaccess
+# --- Build / dependency directories inside our custom code ------------------
+/wp-content/themes/*/node_modules
+/wp-content/themes/*/vendor
+/wp-content/themes/*/.phpcs.cache
+/wp-content/plugins/*/node_modules
+/wp-content/plugins/*/vendor
+/wp-content/plugins/*/.phpcs.cache
+/wp-content/mu-plugins/*/node_modules
+/wp-content/mu-plugins/*/vendor
+/wp-content/mu-plugins/*/.phpcs.cache
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#/wp-content/plugins
+# --- Repo-root build / cache artifacts --------------------------------------
+/node_modules
+/vendor
+/.phpcs.cache
+/.phpunit.result.cache
 
-# All themes
-#
-# Note: If you wish to whitelist themes,
-# uncomment the next line
-#/wp-content/themes
+# --- OS noise ---------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# --- Editor noise -----------------------------------------------------------
+/.idea
+/.vscode
+*.swp
+*.swo
+*~

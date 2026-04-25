@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  lint-php:
+    name: PHPCS (WordPress Coding Standards)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock', 'composer.json') }}
+
+      - name: Install Composer deps
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run PHPCS
+        run: composer run lint
+
+  build:
+    name: Build all workspaces
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Lint (JS + CSS)
+        run: |
+          npm run lint:js --if-present
+          npm run lint:css --if-present
+
+      - name: Build all workspaces
+        run: npm run build --if-present

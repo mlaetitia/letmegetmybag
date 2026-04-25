@@ -1,0 +1,25 @@
+{
+  "name": "commonplace",
+  "version": "0.1.0",
+  "description": "Commonplace - a quiet, earthy editorial block theme for the multipotentialite.",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "author": "Lae",
+  "homepage": "https://letmegetmybag.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaetitia/letmegetmybag.git",
+    "directory": "wp-content/themes/commonplace"
+  },
+  "scripts": {
+    "build": "wp-scripts build --webpack-src-dir=assets/src --output-path=assets/build",
+    "start": "wp-scripts start --webpack-src-dir=assets/src --output-path=assets/build",
+    "lint:js": "wp-scripts lint-js assets/src",
+    "lint:css": "wp-scripts lint-style \"assets/src/**/*.{css,scss}\"",
+    "format": "wp-scripts format assets/src",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

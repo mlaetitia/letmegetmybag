@@ -1,0 +1,32 @@
+{
+  "name": "letmegetmybag",
+  "version": "0.1.0",
+  "description": "Source repo for letmegetmybag.com - custom WordPress themes, plugins, and mu-plugins.",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "author": "Lae",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaetitia/letmegetmybag.git"
+  },
+  "workspaces": [
+    "wp-content/themes/*",
+    "wp-content/plugins/*",
+    "wp-content/mu-plugins/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspaces --if-present",
+    "lint:js": "npm run lint:js --workspaces --if-present",
+    "lint:css": "npm run lint:css --workspaces --if-present",
+    "lint:php": "composer run lint",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+    "format:js": "npm run format --workspaces --if-present",
+    "format:php": "composer run format",
+    "format": "npm run format:js && npm run format:php"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  }
+}
