@@ -1,90 +1,9 @@
 <!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"commonplace-frontpage-marker","layout":{"type":"constrained"}} -->
-<main class="wp-block-group commonplace-frontpage-marker">
-
-	<!-- Masthead intro -->
-	<!-- wp:group {"className":"commonplace-masthead","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group commonplace-masthead" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
-		<!-- wp:paragraph {"className":"commonplace-intro","fontSize":"x-large","style":{"typography":{"fontFamily":"var:preset|font-family|serif","fontStyle":"italic","fontWeight":"400","lineHeight":"1.3","letterSpacing":"-0.01em"}}} -->
-		<p class="commonplace-intro has-x-large-font-size" style="font-family:var(--wp--preset--font-family--serif);font-style:italic;font-weight:400;line-height:1.3;letter-spacing:-0.01em">I'm Lae. I live in Portugal, write <span style="color:var(--wp--preset--color--coding)">code</span> at Automattic, and keep a bag of curiosities &mdash; books I'm <span style="color:var(--wp--preset--color--reading)">reading</span>, things I'm <span style="color:var(--wp--preset--color--growing)">growing</span>, <span style="color:var(--wp--preset--color--making)">making</span>. And I'm taking <span style="color:var(--wp--preset--color--notes)">notes</span> along the way.</p>
-		<!-- /wp:paragraph -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- Subtle separator -->
-	<!-- wp:separator {"backgroundColor":"rule-soft","className":"is-style-wide"} -->
-	<hr class="wp-block-separator has-text-color has-rule-soft-color has-alpha-channel-opacity has-rule-soft-background-color has-background is-style-wide"/>
-	<!-- /wp:separator -->
-
-	<!-- Recent writing section -->
-	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-		<!-- wp:paragraph {"className":"commonplace-mono-label","fontSize":"small","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-		<p class="commonplace-mono-label has-small-font-size" style="margin-bottom:var(--wp--preset--spacing--40)">Recent writing</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:query {"queryId":1,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"exclude","inherit":false,"taxQuery":null,"parents":[]},"layout":{"type":"default"}} -->
-		<div class="wp-block-query">
-			<!-- wp:post-template {"style":{"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"grid","columnCount":3}} -->
-				<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"top":"var:preset|spacing|30"}},"border":{"top":{"color":"var:preset|color|rule-soft","width":"1px"}}},"layout":{"type":"constrained"}} -->
-				<div class="wp-block-group" style="border-top-color:var(--wp--preset--color--rule-soft);border-top-width:1px;padding-top:var(--wp--preset--spacing--30)">
-					<!-- wp:post-terms {"term":"category","prefix":"","suffix":"","className":"commonplace-chip"} /-->
-					<!-- wp:post-title {"isLink":true,"level":3,"style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}},"typography":{"fontSize":"1.25rem","lineHeight":"1.25"}}} /-->
-					<!-- wp:post-excerpt {"excerptLength":18,"moreText":"","textColor":"ink-soft","fontSize":"small"} /-->
-					<!-- wp:post-date {"format":"M j, Y","className":"commonplace-mono-label","fontSize":"small","style":{"spacing":{"margin":{"top":"var:preset|spacing|20"}}}} /-->
-				</div>
-				<!-- /wp:group -->
-			<!-- /wp:post-template -->
-		</div>
-		<!-- /wp:query -->
-
-		<!-- All writing link -->
-		<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"fontSize":"small"} -->
-		<p class="has-small-font-size" style="margin-top:var(--wp--preset--spacing--50)"><a href="/blog/">All writing &rarr;</a></p>
-		<!-- /wp:paragraph -->
-	</div>
-	<!-- /wp:group -->
-
-	<!-- Subtle separator -->
-	<!-- wp:separator {"backgroundColor":"rule-soft","className":"is-style-wide"} -->
-	<hr class="wp-block-separator has-text-color has-rule-soft-color has-alpha-channel-opacity has-rule-soft-background-color has-background is-style-wide"/>
-	<!-- /wp:separator -->
-
-	<!-- Category tiles -->
-	<!-- wp:group {"className":"commonplace-category-tiles","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group commonplace-category-tiles" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)">
-		<!-- wp:paragraph {"className":"commonplace-mono-label","fontSize":"small","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-		<p class="commonplace-mono-label has-small-font-size" style="margin-bottom:var(--wp--preset--spacing--40)">Browse by section</p>
-		<!-- /wp:paragraph -->
-
-		<!-- wp:html -->
-		<div class="commonplace-tiles-grid">
-			<a href="/category/notes/" class="commonplace-tile commonplace-tile--notes">
-				<span class="commonplace-tile__name">Notes</span>
-				<span class="commonplace-tile__hint">thoughts, journals, life</span>
-			</a>
-			<a href="/category/reading/" class="commonplace-tile commonplace-tile--reading">
-				<span class="commonplace-tile__name">Reading</span>
-				<span class="commonplace-tile__hint">books, notes, quotes</span>
-			</a>
-			<a href="/category/making/" class="commonplace-tile commonplace-tile--making">
-				<span class="commonplace-tile__name">Making</span>
-				<span class="commonplace-tile__hint">sewing, crochet, knitting</span>
-			</a>
-			<a href="/category/coding/" class="commonplace-tile commonplace-tile--coding">
-				<span class="commonplace-tile__name">Coding</span>
-				<span class="commonplace-tile__hint">code, tools, AI</span>
-			</a>
-			<a href="/category/growing/" class="commonplace-tile commonplace-tile--growing">
-				<span class="commonplace-tile__name">Growing</span>
-				<span class="commonplace-tile__hint">nature, herbalism, food</span>
-			</a>
-		</div>
-		<!-- /wp:html -->
-	</div>
-	<!-- /wp:group -->
-
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
+	<!-- wp:pattern {"slug":"commonplace/hidden-blog-heading"} /-->
+	<!-- wp:pattern {"slug":"commonplace/template-query-loop"} /-->
 </main>
 <!-- /wp:group -->
 
