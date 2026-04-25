@@ -2,7 +2,7 @@
     "name": "mlaetitia/letmegetmybag",
     "description": "Source repo for letmegetmybag.com - custom WordPress themes, plugins, and mu-plugins.",
     "type": "project",
-    "license": "GPL-3.0-or-later",
+    "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=8.0"
     },
