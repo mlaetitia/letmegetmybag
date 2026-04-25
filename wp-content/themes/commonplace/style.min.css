@@ -215,3 +215,121 @@ body.category-growing {
 		letter-spacing: -1px;
 	}
 }
+
+/* =============================================================================
+ * Dim-mode toggle button (in header).
+ * Shows the moon icon in cream mode (= "switch to dim") and the sun icon in
+ * dim mode (= "switch to cream"). Click handler in assets/js/dim-mode.js.
+ * ============================================================================= */
+.commonplace-theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	background: transparent;
+	border: 1px solid var(--wp--preset--color--rule);
+	border-radius: 50%;
+	color: var(--wp--preset--color--ink-soft);
+	cursor: pointer;
+	transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.commonplace-theme-toggle:hover {
+	color: var(--wp--preset--color--accent);
+	border-color: var(--wp--preset--color--accent);
+}
+
+.commonplace-theme-toggle:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
+}
+
+/* Show one icon at a time depending on the active theme. */
+.commonplace-theme-toggle__sun,
+.commonplace-theme-toggle__moon {
+	display: none;
+	line-height: 0;
+}
+
+:root[data-theme="dim"] .commonplace-theme-toggle__sun {
+	display: inline-flex;
+}
+
+:root[data-theme="cream"] .commonplace-theme-toggle__moon,
+:root:not([data-theme]) .commonplace-theme-toggle__moon {
+	display: inline-flex;
+}
+
+/* =============================================================================
+ * Front-page intro paragraph: large italic serif with category-coloured words.
+ * ============================================================================= */
+.commonplace-intro {
+	font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+	max-width: 36ch;
+	color: var(--wp--preset--color--contrast);
+}
+
+.commonplace-intro span {
+	white-space: nowrap;
+}
+
+/* =============================================================================
+ * Category tiles (front page footer): 5-column grid, accent-tinted hover.
+ * ============================================================================= */
+.commonplace-tiles-grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 12px;
+}
+
+@media (max-width: 900px) {
+	.commonplace-tiles-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.commonplace-tiles-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.commonplace-tile {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 18px 16px;
+	border: 1px solid var(--wp--preset--color--rule-soft);
+	border-radius: 4px;
+	text-decoration: none;
+	transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+	background: transparent;
+}
+
+.commonplace-tile:hover {
+	border-color: var(--tile-accent, var(--wp--preset--color--accent));
+	background: color-mix(in srgb, var(--tile-accent, var(--wp--preset--color--accent)) 4%, transparent);
+}
+
+.commonplace-tile--notes    { --tile-accent: var(--wp--preset--color--notes); }
+.commonplace-tile--reading  { --tile-accent: var(--wp--preset--color--reading); }
+.commonplace-tile--making   { --tile-accent: var(--wp--preset--color--making); }
+.commonplace-tile--coding   { --tile-accent: var(--wp--preset--color--coding); }
+.commonplace-tile--growing  { --tile-accent: var(--wp--preset--color--growing); }
+
+.commonplace-tile__name {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.25rem;
+	font-style: italic;
+	color: var(--tile-accent);
+	line-height: 1.2;
+}
+
+.commonplace-tile__hint {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 0.75rem;
+	color: var(--wp--preset--color--ink-muted);
+	letter-spacing: 0;
+}

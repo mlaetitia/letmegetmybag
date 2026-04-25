@@ -41,4 +41,21 @@
 		applyMode: applyMode,
 		toggle: toggle,
 	};
+
+	/**
+	 * Attach click handlers to any `.commonplace-theme-toggle` buttons in the
+	 * page. Called once on DOMContentLoaded.
+	 */
+	function bindToggleButtons() {
+		var buttons = document.querySelectorAll( '.commonplace-theme-toggle' );
+		for ( var i = 0; i < buttons.length; i++ ) {
+			buttons[ i ].addEventListener( 'click', toggle );
+		}
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', bindToggleButtons );
+	} else {
+		bindToggleButtons();
+	}
 }() );
