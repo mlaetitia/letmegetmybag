@@ -2,9 +2,26 @@
 
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
-	<!-- wp:query-title {"type":"archive"} /-->
-	 <!-- wp:term-description /-->
-	<!-- wp:pattern {"slug":"commonplace/template-query-loop"} /-->
+
+	<!-- Section hero: archive title + description + accent stripe -->
+	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--40)">
+		<!-- wp:query-title {"type":"archive","level":1} /-->
+
+		<!-- wp:term-description {"textColor":"ink-soft","fontSize":"large","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|40"}}}} /-->
+
+		<!-- wp:separator {"className":"commonplace-accent-stripe","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+		<hr class="wp-block-separator commonplace-accent-stripe" style="margin-top:0;margin-bottom:0"/>
+		<!-- /wp:separator -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- Post list -->
+	<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--70)">
+		<!-- wp:pattern {"slug":"commonplace/template-query-loop"} /-->
+	</div>
+	<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

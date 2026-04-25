@@ -140,7 +140,7 @@ add_action( 'init', 'commonplace_pattern_categories' );
 // Registers block binding sources.
 if ( ! function_exists( 'commonplace_register_block_bindings' ) ) :
 	/**
-	 * Registers the post format block binding source.
+	 * Registers block binding sources used by templates and patterns.
 	 *
 	 * @since Commonplace 0.1.0
 	 *
@@ -154,9 +154,43 @@ if ( ! function_exists( 'commonplace_register_block_bindings' ) ) :
 				'get_value_callback' => 'commonplace_format_binding',
 			)
 		);
+
+		register_block_bindings_source(
+			'commonplace/reading-time',
+			array(
+				'label'              => __( 'Reading time', 'commonplace' ),
+				'get_value_callback' => 'commonplace_reading_time_binding',
+			)
+		);
 	}
 endif;
 add_action( 'init', 'commonplace_register_block_bindings' );
+
+// Reading-time block binding callback.
+if ( ! function_exists( 'commonplace_reading_time_binding' ) ) :
+	/**
+	 * Returns "X min read" for the current post, based on a 200-words-per-minute
+	 * reading speed. Used as the get_value_callback for the
+	 * `commonplace/reading-time` block binding.
+	 *
+	 * @since Commonplace 0.1.0
+	 *
+	 * @return string
+	 */
+	function commonplace_reading_time_binding() {
+		$post_id = get_the_ID();
+		if ( ! $post_id ) {
+			return '';
+		}
+
+		$content = get_post_field( 'post_content', $post_id );
+		$words   = str_word_count( wp_strip_all_tags( (string) $content ) );
+		$minutes = max( 1, (int) ceil( $words / 200 ) );
+
+		/* translators: %d: number of minutes to read the post. */
+		return sprintf( _n( '%d min read', '%d min read', $minutes, 'commonplace' ), $minutes );
+	}
+endif;
 
 // Registers block binding callback function for the post format name.
 if ( ! function_exists( 'commonplace_format_binding' ) ) :
@@ -207,3 +241,58 @@ if ( ! function_exists( 'commonplace_body_class' ) ) :
 	}
 endif;
 add_filter( 'body_class', 'commonplace_body_class' );
+
+// Pre-paint dim-mode boot snippet, inlined in <head> to avoid FOUC.
+if ( ! function_exists( 'commonplace_dim_mode_inline' ) ) :
+	/**
+	 * Outputs an inline snippet in <head> that reads the user's dim-mode
+	 * preference (localStorage, falling back to prefers-color-scheme) and
+	 * sets <html data-theme="..."> before paint.
+	 *
+	 * The full toggle helper lives in assets/js/dim-mode.js, which is
+	 * enqueued non-blocking; this inline is just for initial state.
+	 *
+	 * @since Commonplace 0.1.0
+	 *
+	 * @return void
+	 */
+	function commonplace_dim_mode_inline() {
+		?>
+<script>
+(function(){
+	try {
+		var stored = localStorage.getItem('commonplaceTheme');
+		var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		var mode = stored || (prefersDark ? 'dim' : 'cream');
+		document.documentElement.setAttribute('data-theme', mode);
+	} catch (e) { /* localStorage unavailable */ }
+})();
+</script>
+		<?php
+	}
+endif;
+add_action( 'wp_head', 'commonplace_dim_mode_inline', 1 );
+
+// Enqueues the dim-mode toggle helper (used by future toggle buttons).
+if ( ! function_exists( 'commonplace_enqueue_scripts' ) ) :
+	/**
+	 * Enqueues theme JavaScript on the front end.
+	 *
+	 * @since Commonplace 0.1.0
+	 *
+	 * @return void
+	 */
+	function commonplace_enqueue_scripts() {
+		wp_enqueue_script(
+			'commonplace-dim-mode',
+			get_parent_theme_file_uri( 'assets/js/dim-mode.js' ),
+			array(),
+			wp_get_theme()->get( 'Version' ),
+			array(
+				'in_footer' => false,
+				'strategy'  => 'defer',
+			)
+		);
+	}
+endif;
+add_action( 'wp_enqueue_scripts', 'commonplace_enqueue_scripts' );

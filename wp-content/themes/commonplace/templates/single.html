@@ -2,22 +2,49 @@
 
 <!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--60)">
+
 	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 	<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+
+		<!-- Metadata strip: category chip · date · reading time -->
+		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30","margin":{"bottom":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+		<div class="wp-block-group" style="margin-bottom:var(--wp--preset--spacing--30)">
+			<!-- wp:post-terms {"term":"category","prefix":"","suffix":"","className":"commonplace-chip"} /-->
+			<!-- wp:post-date {"format":"F j, Y","className":"commonplace-mono-label","fontSize":"small"} /-->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"commonplace/reading-time"}}},"className":"commonplace-mono-label","fontSize":"small"} -->
+			<p class="commonplace-mono-label has-small-font-size">8 min read</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- Post title -->
 		<!-- wp:post-title {"level":1} /-->
-		<!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
+
+		<!-- Featured image (optional - only renders if set) -->
+		<!-- wp:post-featured-image {"aspectRatio":"3/2","style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}}} /-->
+
+		<!-- Author byline -->
 		<!-- wp:pattern {"slug":"commonplace/hidden-written-by"} /-->
+
+		<!-- Post content -->
 		<!-- wp:post-content {"align":"full","layout":{"type":"constrained"}} /-->
-		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-		<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
+
+		<!-- Tag pills -->
+		<!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+		<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--40)">
 			<!-- wp:post-terms {"term":"post_tag","separator":"  ","className":"is-style-post-terms-1"} /-->
 		</div>
 		<!-- /wp:group -->
-		
+
+		<!-- Post navigation -->
 		<!-- wp:pattern {"slug":"commonplace/post-navigation"} /-->
+
+		<!-- Comments -->
 		<!-- wp:pattern {"slug":"commonplace/comments"} /-->
 	</div>
 	<!-- /wp:group -->
+
+	<!-- More posts (related) -->
 	<!-- wp:pattern {"slug":"commonplace/more-posts"} /-->
 </main>
 <!-- /wp:group -->
